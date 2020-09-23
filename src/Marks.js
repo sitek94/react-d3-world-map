@@ -1,14 +1,13 @@
 import React from 'react';
 
-export const Marks = ({ data, yScale, xScale, yValue, xValue, tooltipFormat  }) => data.map(d => (
-  <rect
+export const Marks = ({ data, radius, yScale, xScale, yValue, xValue, tooltipFormat  }) => data.map((d, i) => (
+  <circle
     className="mark"
-    key={yValue(d)}
-    x={0}
-    y={yScale(yValue(d))}
-    width={xScale(xValue(d))} 
-    height={yScale.bandwidth()} 
+    key={i + '-' + yValue(d)}
+    cx={xScale(xValue(d))}
+    cy={yScale(yValue(d))}
+    r={radius}
   >
     <title>{tooltipFormat(xValue(d))}</title>
-  </rect>
+  </circle>
 ))
