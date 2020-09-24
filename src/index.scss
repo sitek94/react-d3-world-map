@@ -23,26 +23,30 @@ svg {
   margin: 0 auto;
 }
 
-.tick {
-  line {
+.marks {
+  .country {
+    fill: #E6842A;
+    stroke: none;
+    transition: fill .5s;
+
+    &:hover {
+      fill: #F6B656;
+    }
+  }
+
+  .interiors {
+    stroke: var(--gray-10);
+    stroke-width: .25px;
+    fill: none;
+  }
+
+  .sphere {
+    fill: var(--gray-15);
+  }
+
+  .graticules {
+    fill: none;
     stroke: var(--gray-20);
+    stroke-opacity: .6;
   }
-
-  text {
-    fill: var(--gray-30);
-  }
-}
-
-.mark {
-  fill: #E6842A;
-  transition: fill .5s;
-
-  &:hover {
-    fill: #F6B656;
-  }
-}
-
-.axis-label {
-  font-size: 2.5em;
-  fill: var(--gray-30);
 }
