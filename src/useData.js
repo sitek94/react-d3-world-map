@@ -1,23 +1,21 @@
 import { useState, useEffect } from 'react';
-import { csv } from 'd3';
+import { json } from 'd3';
+import { feature } from 'topojson';
 
-const csvUrl =
-  'https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/639388c2cbc2120a14dcf466e85730eb8be498bb/iris.csv';
+const jsonUrl =
+  'https://unpkg.com/world-atlas@2.0.2/countries-50m.json';
 
 export const useData = () => {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    const row = d => {
-      d.sepal_length = +d.sepal_length;
-      d.sepal_width = +d.sepal_width;
-      d.petal_length = +d.petal_width;
-      d.petal_width = +d.petal_width;
+  console.log(data);
 
-      return d;
-    }
-    csv(csvUrl, row)
-      .then(setData);
+  useEffect(() => {
+    json(jsonUrl)
+      .then(topojsonData => {
+        const { countries } = topojsonData.objects;
+        setData(feature(topojsonData, countries));
+      });
   }, []);
 
   return data;
